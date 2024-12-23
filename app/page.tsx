@@ -12,13 +12,15 @@ export default async function Home() {
   await queryClient.prefetchQuery({
     queryKey: ["todos"],
     queryFn: async () =>
-      await getData("https://jsonplaceholder.typicode.com", "/todos"),
+      await getData("https://jsonplaceholder.typicode.com", `/todos?_limit=8`),
   });
 
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <TodoTable />
+        <div className="px-5 mt-10 bg-[#ffff]">
+          <TodoTable />
+        </div>
       </HydrationBoundary>
     </>
   );

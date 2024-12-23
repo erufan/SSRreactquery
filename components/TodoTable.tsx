@@ -11,7 +11,7 @@ const TodoTable = () => {
     isLoading,
   } = useGetData<Todo[]>(
     "https://jsonplaceholder.typicode.com",
-    "/todos",
+    "/todos?_limit=8",
     "todos"
   );
 
@@ -23,7 +23,6 @@ const TodoTable = () => {
       <Table>
         <Table.TableHeader>
           <Table.TableRow>
-            <Table.TableHead>user</Table.TableHead>
             <Table.TableHead>title</Table.TableHead>
             <Table.TableHead>completed</Table.TableHead>
           </Table.TableRow>
