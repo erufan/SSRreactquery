@@ -2,6 +2,7 @@
 import Todo from "@/interface/Todo";
 import Table from "./ui/Table";
 import useGetData from "@/hooks/useGetData";
+import TodoCell from "./TodoCell";
 
 const TodoTable = () => {
   const {
@@ -22,18 +23,14 @@ const TodoTable = () => {
       <Table>
         <Table.TableHeader>
           <Table.TableRow>
+            <Table.TableHead>user</Table.TableHead>
             <Table.TableHead>title</Table.TableHead>
             <Table.TableHead>completed</Table.TableHead>
-            <Table.TableHead>
-              <span className="sr-only">Actions</span>
-            </Table.TableHead>
           </Table.TableRow>
         </Table.TableHeader>
         <Table.TableBody>
           {todos!.map((todo) => (
-            <Table.TableRow key={todo.title}>
-              <Table.TableCell>{todo.title}</Table.TableCell>
-            </Table.TableRow>
+            <TodoCell todo={todo} key={todo.id} />
           ))}
         </Table.TableBody>
       </Table>
