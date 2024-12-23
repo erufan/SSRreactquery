@@ -1,4 +1,4 @@
-import DataTable from "@/components/DataTable";
+import TodoTable from "@/components/TodoTable";
 import getData from "@/server/actions/getData";
 import {
   dehydrate,
@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <DataTable />
+        <TodoTable />
       </HydrationBoundary>
     </>
   );

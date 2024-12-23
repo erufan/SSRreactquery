@@ -1,18 +1,21 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
+import Todo from "@/interface/Todo";
 import Table from "./ui/Table";
-import getData from "@/server/actions/getData";
+import useGetData from "@/hooks/useGetData";
 
-const DataTable = () => {
+const TodoTable = () => {
   const {
     data: todos,
     error,
     isLoading,
-  } = useQuery({
-    queryKey: ["posts"],
-    queryFn: async () =>
-      await getData("https://jsonplaceholder.typicode.com", "/todos"),
-  });
+  } = useGetData<Todo[]>(
+    "https://jsonplaceholder.typicode.com",
+    "/todos",
+    "todos"
+  );
+
+  if (isLoading) return <p>loading...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <>
@@ -27,7 +30,7 @@ const DataTable = () => {
           </Table.TableRow>
         </Table.TableHeader>
         <Table.TableBody>
-          {todos?.data.map((todo) => (
+          {todos!.map((todo) => (
             <Table.TableRow key={todo.title}>
               <Table.TableCell>{todo.title}</Table.TableCell>
             </Table.TableRow>
@@ -38,4 +41,4 @@ const DataTable = () => {
   );
 };
 
-export default DataTable;
+export default TodoTable;
