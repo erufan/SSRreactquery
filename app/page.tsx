@@ -10,7 +10,7 @@ export default async function Home() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["posts"],
+    queryKey: ["todos"],
     queryFn: async () =>
       await getData("https://jsonplaceholder.typicode.com", "/todos"),
   });
