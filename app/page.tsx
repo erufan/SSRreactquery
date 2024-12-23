@@ -1,9 +1,25 @@
 import DataTable from "@/components/DataTable";
+import getData from "@/server/actions/getData";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
-export default function Home() {
+export default async function Home() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["posts"],
+    queryFn: async () =>
+      await getData("https://jsonplaceholder.typicode.com", "/todos"),
+  });
+
   return (
     <>
-      <DataTable />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <DataTable />
+      </HydrationBoundary>
     </>
   );
 }
