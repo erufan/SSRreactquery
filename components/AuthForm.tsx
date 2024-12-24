@@ -20,8 +20,7 @@ const AuthForm = ({ param }: Props) => {
     {} as UserCredentialErrors
   );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const formData = new FormData(e.currentTarget);
+  const handleSubmit = (formData: FormData) => {
     const userCredentials: UserCredentials = {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
