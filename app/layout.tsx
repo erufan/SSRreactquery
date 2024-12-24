@@ -63,7 +63,7 @@ function SmallNav() {
           </li>
 
           <li>
-            <Link href={"/seting"}>
+            <Link href={"/settings"}>
               <IoMdSettings size={30} />
             </Link>
           </li>
