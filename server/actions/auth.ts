@@ -14,7 +14,7 @@ import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
 
 export async function signup(
-  prevState: UserCredentialErrors | {},
+  prevState: UserCredentialErrors,
   formData: UserCredentials
 ) {
   let redirectPath: string | null = null;
@@ -46,7 +46,7 @@ export async function signup(
 }
 
 export async function login(
-  prevState: UserCredentialErrors | {},
+  prevState: UserCredentialErrors,
   formData: UserCredentials
 ) {
   let redirectPath: string | null = null;
