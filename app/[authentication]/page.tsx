@@ -2,10 +2,11 @@ import AuthForm from "@/components/AuthForm";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: { authentication: "log-in" | "sign-up" };
+  params: Promise<{ authentication: "log-in" | "sign-up" }>;
 }
 
-const authenticationPage = ({ params }: Props) => {
+const authenticationPage = async (props: Props) => {
+  const params = await props.params;
   if (params.authentication !== "log-in" && params.authentication !== "sign-up")
     return notFound();
 
